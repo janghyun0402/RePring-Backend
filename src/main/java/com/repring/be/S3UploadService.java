@@ -37,7 +37,7 @@ public class S3UploadService {
     public String uploadFile(File uploadFile, String dirName) throws IOException {
         String fileName = dirName + "/" + UUID.randomUUID() + uploadFile.getName();     //S3에 저장된 파일 이름
         String uploadImageUrl = putS3(uploadFile, fileName);        //S3로 파일 업로드
- 
+
         removeNewFile(uploadFile);
         return uploadImageUrl;
     }

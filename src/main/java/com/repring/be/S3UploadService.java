@@ -21,7 +21,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class S3UploadService {
 
-    private final AmazonS3 amazonS3;
     private final AmazonS3Client amazonS3Client;
     private final MusicRepository musicRepository;
 
@@ -35,17 +34,13 @@ public class S3UploadService {
 
 
     public String uploadFile(File uploadFile, String dirName) throws IOException {
-        String fileName = dirName + "/" + UUID.randomUUID() + uploadFile.getName();     //S3에 저장된 파일 이름
-        String uploadImageUrl = putS3(uploadFile, fileName);        //S3로 파일 업로드
+        String fileName = dirName + "/" + UUID.randomUUID() + uploadFile.getName();     //S3에 저장된 object key
+
+        amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, uploadFile)     //파일 업로드
+                .withCannedAcl(CannedAccessControlList.PublicRead));
 
         removeNewFile(uploadFile);
-        return uploadImageUrl;
-    }
-
-    public String putS3(File uploadFile, String fileName) {
-        amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, uploadFile)
-                .withCannedAcl(CannedAccessControlList.PublicRead));
-        return amazonS3Client.getUrl(bucket, fileName).toString();
+        return fileName;
     }
 
     private void removeNewFile(File targetFile) {

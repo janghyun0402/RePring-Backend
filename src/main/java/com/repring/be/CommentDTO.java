@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class CommentDTO {
 
     @Builder
@@ -48,8 +51,8 @@ public class CommentDTO {
     public static class Response {
         private Long id;
         private String content;
-        private String createdDate;
-        private String modifiedDate;
+        private LocalDate createdDate;
+        private LocalDate modifiedDate;
 
         public static Response from(Comment comment) {
             return Response.builder()

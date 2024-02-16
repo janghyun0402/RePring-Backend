@@ -7,6 +7,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Builder
 @NoArgsConstructor
@@ -14,6 +18,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 @Getter
 @Table(name = "comment")
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Comment {
 
 
@@ -31,11 +36,11 @@ public class Comment {
 
     @Column(name = "created_date")
     @CreatedDate
-    private String createdDate;
+    private LocalDate createdDate;
 
     @Column(name = "modified_date")
     @LastModifiedDate
-    private String modifiedDate;
+    private LocalDate modifiedDate;
 
     @ManyToOne
     @JoinColumn(name = "music_id")

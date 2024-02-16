@@ -40,4 +40,10 @@ public class CommentService {
     public void delete(Long id) {
         commentRepository.deleteById(id);
     }
+
+    public void modify(CommentDTO.ModifyRequest request) {
+        Comment comment = commentRepository.findById(request.getCommentId()).orElseThrow();
+        comment.setContent(request.getContent());
+        commentRepository.save(comment);
+    }
 }

@@ -25,6 +25,10 @@ public class Comment {
     @Column(columnDefinition = "TEXT", nullable = false, length = 500)
     private String content;
 
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     @Column(name = "created_date")
     @CreatedDate
     private String createdDate;

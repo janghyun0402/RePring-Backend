@@ -23,6 +23,24 @@ public class CommentDTO {
         }
     }
 
+
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    public static class ModifyRequest {
+        private Long commentId;
+        private String content;
+
+        public static ModifyRequest of(Long id, String content) {
+            return ModifyRequest.builder()
+                    .commentId(id)
+                    .content(content)
+                    .build();
+        }
+    }
+
+
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor

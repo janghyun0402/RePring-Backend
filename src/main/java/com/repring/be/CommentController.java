@@ -30,6 +30,15 @@ public class CommentController {
     @DeleteMapping("/api/music/comments/{id}")
     public String deleteComment(@PathVariable Long id) {
         commentService.delete(id);
+
+        return "ok";
+    }
+
+    @PutMapping("/api/music/comments/{id}")
+    public String modifyComment(@PathVariable Long id, @RequestBody String content) {
+        CommentDTO.ModifyRequest request = CommentDTO.ModifyRequest.of(id, content);
+        commentService.modify(request);
+
         return "ok";
     }
 }

@@ -21,7 +21,6 @@ import java.io.IOException;
 public class S3DownloadService {
 
     private final AmazonS3 amazonS3;
-    private final AmazonS3Client amazonS3Client;
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;

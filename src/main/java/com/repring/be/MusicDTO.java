@@ -18,7 +18,7 @@ public class MusicDTO {
         private String artist;
         private MultipartFile cover;
 
-        public static CreateRequest of(String title, String artist, MultipartFile cover){
+        public static CreateRequest of(String title, String artist, MultipartFile cover){   //MusicDTO.CreateRequest 객체 생성
             return CreateRequest.builder()
                     .title(title)
                     .artist(artist)
@@ -35,7 +35,7 @@ public class MusicDTO {
         private String title;
         private String artist;
 
-        public static Response from(Music music) {
+        public static Response from(Music music) {      //Music -> MusicDTO.Response
             return Response.builder()
                     .id(music.getId())
                     .title(music.getTitle())

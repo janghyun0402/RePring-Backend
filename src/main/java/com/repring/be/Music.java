@@ -18,7 +18,7 @@ public class Music {
 
     private String imageUrl;
 
-    public static Music from(MusicDTO.CreateRequest request) {
+    public static Music from(MusicDTO.CreateRequest request) {      //RequestDto -> Music
         return Music.builder()
                 .artist(request.getArtist())
                 .title(request.getTitle())

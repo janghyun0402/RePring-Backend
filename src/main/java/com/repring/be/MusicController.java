@@ -42,6 +42,7 @@ public class MusicController {
     @GetMapping(value = "/api/music")
     public List<Music> readAll(){
 
+        log.info("access success!");
         return musicRepository.findAll();
     }
 
